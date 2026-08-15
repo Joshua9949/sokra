@@ -1,0 +1,15 @@
+export const PROVOCATIONS: Record<string, string> = {
+  crypto: "Most people think they own their crypto. They don't. Do you know why?",
+  finance: "Every bank in the world is lending out money it doesn't have. Have you ever wondered how that works?",
+  "personal-finance": "Most people spend their entire lives working for money. A small number of people have money working for them. What is the difference?",
+  "real-estate": "Somewhere right now, someone is making more money sleeping than most people make working. That is real estate. Do you know how it actually works?",
+  ai: "Every AI you have ever used was trained to predict the next word. That is it. Does that change how you think about it?",
+  cybersecurity: "Right now, everything you do online is being watched by someone. The question is whether you understand by whom and why.",
+  law: "Most laws were not designed to protect you. They were designed to protect whoever was in power when they were written. Do you know how that changes?",
+  health: "Your medical data is one of the most valuable things about you. And right now, you do not own it. Does that concern you?",
+  climate: "Companies are paying to pollute. That sounds backwards. But it is actually one of the most interesting economic experiments ever run. Do you know how it works?",
+  business: "Most businesses fail not because of bad ideas but because of one thing they got wrong early. Do you know what it is?",
+  marketing: "The most powerful marketing in the world does not feel like marketing at all. What do you think makes the difference?",
+  career: "In ten years, the most valuable thing on your resume will not be where you worked. It will be what you can prove you know. Are you building that?",
+  philosophy: "Every major religion in history answered the same three questions differently. What is real? What is good? What happens when we die? Which answers do you find most compelling?",
+};

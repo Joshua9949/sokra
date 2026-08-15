@@ -1,0 +1,227 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-2xl: 32px;
+  --radius-3xl: 44px;
+
+  --color-bg: var(--bg);
+  --color-bg2: var(--bg2);
+  --color-bg3: var(--bg3);
+  --color-surface: var(--surface);
+  --color-surface2: var(--surface2);
+  --color-border: var(--border);
+  --color-border2: var(--border2);
+  --color-primary: var(--primary);
+  --color-primary2: var(--primary2);
+  --color-gold: var(--gold);
+  --color-gold2: var(--gold2);
+  --color-teal: var(--teal);
+  --color-green: var(--green);
+  --color-red: var(--red);
+  --color-text: var(--text);
+  --color-text2: var(--text2);
+  --color-text3: var(--text3);
+
+  --color-background: var(--bg);
+  --color-foreground: var(--text);
+  --color-card: var(--surface);
+  --color-card-foreground: var(--text);
+  --color-popover: var(--surface);
+  --color-popover-foreground: var(--text);
+  --color-primary-foreground: var(--bg);
+  --color-secondary: var(--surface2);
+  --color-secondary-foreground: var(--text);
+  --color-muted: var(--surface2);
+  --color-muted-foreground: var(--text2);
+  --color-accent: var(--surface2);
+  --color-accent-foreground: var(--text);
+  --color-destructive: var(--red);
+  --color-destructive-foreground: var(--text);
+  --color-input: var(--border);
+  --color-ring: var(--primary);
+  --color-ring-offset-background: var(--bg);
+
+  --font-display: "Playfair Display", serif;
+  --font-sans: "DM Sans", sans-serif;
+  --font-mono: "DM Mono", monospace;
+}
+
+:root,
+.dark {
+  --bg: #04050a;
+  --bg2: #070810;
+  --bg3: #0c0d18;
+  --surface: #10111f;
+  --surface2: #181928;
+  --border: rgba(180, 160, 255, 0.08);
+  --border2: rgba(180, 160, 255, 0.18);
+  --primary: #a78bfa;
+  --primary2: #c4b5fd;
+  --gold: #f59e0b;
+  --gold2: #fbbf24;
+  --teal: #2dd4bf;
+  --green: #34d399;
+  --red: #f87171;
+  --text: #f1f0ff;
+  --text2: #9ca3af;
+  --text3: #4b5563;
+}
+
+.light {
+  --bg: #fafaf8;
+  --bg2: #f4f3ef;
+  --bg3: #eeecea;
+  --surface: #ffffff;
+  --surface2: #f4f3ef;
+  --border: rgba(100, 80, 180, 0.1);
+  --border2: rgba(100, 80, 180, 0.2);
+  --text: #0c0b14;
+  --text2: #5c5670;
+  --text3: #9ca3af;
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  html,
+  body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    font-weight: 300;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+  body {
+    position: relative;
+  }
+  /* Noise overlay */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.4;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.6 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+  }
+}
+
+@layer utilities {
+  .font-display { font-family: var(--font-display); }
+  .font-mono { font-family: var(--font-mono); }
+  .gradient-text {
+    background: linear-gradient(135deg, var(--primary), var(--gold));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+  .gradient-bg {
+    background: linear-gradient(135deg, var(--primary), var(--gold));
+  }
+  .hero-grid-bg {
+    background-image:
+      linear-gradient(to right, rgba(180, 160, 255, 0.04) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(180, 160, 255, 0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes breathe {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(0.85); opacity: 0.5; }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.animate-breathe { animation: breathe 3s ease-in-out infinite; }
+.animate-float { animation: float 5s ease-in-out infinite; }
+
+@keyframes msg-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes cred-in {
+  0% { opacity: 0; transform: translateY(-12px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 0 rgba(167, 139, 250, 0); }
+  50% { box-shadow: 0 0 16px rgba(167, 139, 250, 0.4); }
+}
+@keyframes sheet-up {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+@keyframes pulse-soft {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.45; }
+}
+
+.animate-msg-in { animation: msg-in 0.3s ease both; }
+.animate-cred-in { animation: cred-in 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both, glow-pulse 2s ease-in-out 0.4s 1; }
+.animate-sheet-up { animation: sheet-up 0.28s cubic-bezier(0.32, 0.72, 0, 1) both; }
+.animate-pulse-soft { animation: pulse-soft 1.4s ease-in-out infinite; }
+.press:active { transform: scale(0.98); }
+.press-btn:active { transform: scale(0.92); }
+.press, .press-btn { transition: transform 0.15s ease, border-color 0.2s ease, opacity 0.2s ease; }
+
+:root { --keyboard-height: 0px; }
+
+@keyframes line-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-line-in {
+  opacity: 0;
+  animation: line-in 800ms ease-out forwards;
+}
+
+/* Light mode edge cases */
+.light body::before,
+body.light::before { opacity: 0.15; }
+.light .hero-orb-1 {
+  background: radial-gradient(circle, rgba(167, 139, 250, 0.12) 0%, transparent 70%);
+}
+.light .hero-orb-2 {
+  background: radial-gradient(circle, rgba(245, 158, 11, 0.08) 0%, transparent 70%);
+}
+.light .device-frame {
+  border-color: rgba(100, 80, 180, 0.3);
+  box-shadow: 0 40px 80px rgba(100, 80, 180, 0.08), 0 0 0 1px rgba(100, 80, 180, 0.1);
+}
+.light .surface-card {
+  box-shadow: 0 1px 4px rgba(100, 80, 180, 0.08);
+}
