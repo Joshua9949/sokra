@@ -10,7 +10,7 @@ function formatConversation(messages: { role: string; content: string }[]): stri
 }
 
 export const sendSokraMessage = createServerFn({ method: "POST" })
-  .inputValidator(
+  .validator(
     z.object({
       wallet: z.string().min(4),
       conversationId: z.string().uuid(),
@@ -100,7 +100,7 @@ export const sendSokraMessage = createServerFn({ method: "POST" })
   });
 
 export const mintCredential = createServerFn({ method: "POST" })
-  .inputValidator(
+  .validator(
     z.object({
       wallet: z.string().min(4),
       credentialId: z.string().uuid(),
@@ -210,7 +210,7 @@ export const mintCredential = createServerFn({ method: "POST" })
   });
 
 export const declineCredential = createServerFn({ method: "POST" })
-  .inputValidator(z.object({ wallet: z.string().min(4), credentialId: z.string().uuid() }))
+  .validator(z.object({ wallet: z.string().min(4), credentialId: z.string().uuid() }))
   .handler(async ({ data }) => {
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
     await supabaseAdmin
@@ -222,7 +222,7 @@ export const declineCredential = createServerFn({ method: "POST" })
   });
 
 export const verifyCredential = createServerFn({ method: "GET" })
-  .inputValidator(z.object({ tokenId: z.string().min(3).max(64) }))
+  .validator(z.object({ tokenId: z.string().min(3).max(64) }))
   .handler(async ({ data }) => {
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
     const { data: row } = await supabaseAdmin

@@ -9,28 +9,18 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as ProfileRouteImport } from './routes/profile'
-import { Route as LessonZeroRouteImport } from './routes/lesson-zero'
-import { Route as DiscoverRouteImport } from './routes/discover'
-import { Route as CredentialsRouteImport } from './routes/credentials'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CredentialsRouteImport } from './routes/credentials'
+import { Route as DiscoverRouteImport } from './routes/discover'
+import { Route as LessonZeroRouteImport } from './routes/lesson-zero'
+import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as ConversationIndexRouteImport } from './routes/conversation.index'
-import { Route as VerifyTokenIdRouteImport } from './routes/verify.$tokenId'
 import { Route as ConversationSubjectRouteImport } from './routes/conversation.$subject'
+import { Route as VerifyTokenIdRouteImport } from './routes/verify.$tokenId'
 
-const ProfileRoute = ProfileRouteImport.update({
-  id: '/profile',
-  path: '/profile',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const LessonZeroRoute = LessonZeroRouteImport.update({
-  id: '/lesson-zero',
-  path: '/lesson-zero',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const DiscoverRoute = DiscoverRouteImport.update({
-  id: '/discover',
-  path: '/discover',
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CredentialsRoute = CredentialsRouteImport.update({
@@ -38,9 +28,19 @@ const CredentialsRoute = CredentialsRouteImport.update({
   path: '/credentials',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const DiscoverRoute = DiscoverRouteImport.update({
+  id: '/discover',
+  path: '/discover',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LessonZeroRoute = LessonZeroRouteImport.update({
+  id: '/lesson-zero',
+  path: '/lesson-zero',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProfileRoute = ProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ConversationIndexRoute = ConversationIndexRouteImport.update({
@@ -48,14 +48,14 @@ const ConversationIndexRoute = ConversationIndexRouteImport.update({
   path: '/conversation/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const VerifyTokenIdRoute = VerifyTokenIdRouteImport.update({
-  id: '/verify/$tokenId',
-  path: '/verify/$tokenId',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const ConversationSubjectRoute = ConversationSubjectRouteImport.update({
   id: '/conversation/$subject',
   path: '/conversation/$subject',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VerifyTokenIdRoute = VerifyTokenIdRouteImport.update({
+  id: '/verify/$tokenId',
+  path: '/verify/$tokenId',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -136,25 +136,11 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/profile': {
-      id: '/profile'
-      path: '/profile'
-      fullPath: '/profile'
-      preLoaderRoute: typeof ProfileRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/lesson-zero': {
-      id: '/lesson-zero'
-      path: '/lesson-zero'
-      fullPath: '/lesson-zero'
-      preLoaderRoute: typeof LessonZeroRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/discover': {
-      id: '/discover'
-      path: '/discover'
-      fullPath: '/discover'
-      preLoaderRoute: typeof DiscoverRouteImport
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/credentials': {
@@ -164,11 +150,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CredentialsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+    '/discover': {
+      id: '/discover'
+      path: '/discover'
+      fullPath: '/discover'
+      preLoaderRoute: typeof DiscoverRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/lesson-zero': {
+      id: '/lesson-zero'
+      path: '/lesson-zero'
+      fullPath: '/lesson-zero'
+      preLoaderRoute: typeof LessonZeroRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/profile': {
+      id: '/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof ProfileRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/conversation/': {
@@ -178,18 +178,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ConversationIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/verify/$tokenId': {
-      id: '/verify/$tokenId'
-      path: '/verify/$tokenId'
-      fullPath: '/verify/$tokenId'
-      preLoaderRoute: typeof VerifyTokenIdRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/conversation/$subject': {
       id: '/conversation/$subject'
       path: '/conversation/$subject'
       fullPath: '/conversation/$subject'
       preLoaderRoute: typeof ConversationSubjectRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/verify/$tokenId': {
+      id: '/verify/$tokenId'
+      path: '/verify/$tokenId'
+      fullPath: '/verify/$tokenId'
+      preLoaderRoute: typeof VerifyTokenIdRouteImport
       parentRoute: typeof rootRouteImport
     }
   }

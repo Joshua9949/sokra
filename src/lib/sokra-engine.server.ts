@@ -1,7 +1,7 @@
 import { SUBJECTS } from "./subjects";
 
-const GATEWAY = "https://ai.gateway.lovable.dev/v1/chat/completions";
-const MODEL = "google/gemini-2.5-flash";
+const GATEWAY = process.env["AI_GATEWAY_URL"] ?? "https://api.openai.com/v1/chat/completions";
+const MODEL = process.env["AI_MODEL"] ?? "gpt-4o-mini";
 
 export type EngineMessage = { role: "user" | "sokra"; content: string };
 
@@ -71,8 +71,8 @@ export async function runSokra(
   history: EngineMessage[],
   earnedAreas: string[],
 ): Promise<EngineResult> {
-  const apiKey = process.env["LOVABLE_API_KEY"];
-  if (!apiKey) throw new Error("AI gateway is not configured");
+  const apiKey = process.env["AI_API_KEY"];
+  if (!apiKey) throw new Error("AI provider is not configured");
 
   const res = await fetch(GATEWAY, {
     method: "POST",
